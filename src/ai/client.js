@@ -6,10 +6,15 @@ import { REGIONS } from '../world/layout.js';
 import { ABILITY_NAMES } from '../game/content.js';
 import { t, LANG } from '../i18n.js';
 
+// The islander chat needs the Node server in server/. Static builds (GitHub Pages) leave it off:
+// no /api probe, no menu entry, no chat choice. Dev and builds with VITE_AI_CHAT=1 keep it.
+export const AI_SUPPORTED = import.meta.env.DEV || import.meta.env.VITE_AI_CHAT === '1';
+
 export class AiClient {
   constructor(game) {
     this.g = game;
     this.available = false;
+    if (!AI_SUPPORTED) return;
     fetch('/api/status').then((r) => (r.ok ? r.json() : null)).then((j) => { this.available = !!j?.ai; }).catch(() => {});
   }
 

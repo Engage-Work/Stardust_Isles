@@ -7,6 +7,7 @@ import { groundHeight, waterLevel, SEG } from '../world/terrain.js';
 import { terrainColor } from '../world/terrainMesh.js';
 import * as THREE from 'three';
 import { t, LANG, LANGS, setLang } from '../i18n.js';
+import { AI_SUPPORTED } from '../ai/client.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const TABS = [['map', t('地图')], ['quests', t('任务')], ['collect', t('收集')], ['codex', t('图鉴')], ['wardrobe', t('装扮')], ['settings', t('设置')]];
@@ -244,7 +245,7 @@ export class Menu {
       <div class="row"><label>${t('反转 Y 轴')}</label><input type="checkbox" id="s-inv" ${s.invertY ? 'checked' : ''}></div>
       <div class="row"><label>${t('画质')}</label><select id="s-quality">${Object.entries(QUALITY).map(([k, q]) => `<option value="${k}" ${s.quality === k ? 'selected' : ''}>${q.label}</option>`).join('')}</select>${note(t('高：泛光、柔和阴影、茂密草地 · 极致：再加环境光遮蔽'))}</div>
       <div class="row"><label>${t('阴影')}</label><input type="checkbox" id="s-shadow" ${s.shadows ? 'checked' : ''}>${note(t('关闭可以提升帧率'))}</div>
-      <div class="row"><label>${t('AI 闲聊')}</label><input type="checkbox" id="s-ai" ${s.aiChat ? 'checked' : ''}>${note(g.ai.available ? t('已连接：和居民对话时可以选择“随便聊聊”') : t('服务器未配置 API Key，此功能不可用'))}</div>
+      ${AI_SUPPORTED ? `<div class="row"><label>${t('AI 闲聊')}</label><input type="checkbox" id="s-ai" ${s.aiChat ? 'checked' : ''}>${note(g.ai.available ? t('已连接：和居民对话时可以选择“随便聊聊”') : t('服务器未配置 API Key，此功能不可用'))}</div>` : ''}
       <div class="sec">${t('操作说明')}</div>
       <div class="d" style="line-height:1.9;color:#8a7c68">${help}</div>
       <div class="row" style="margin-top:20px"><button class="btn ghost" id="s-save">${t('保存游戏')}</button><button class="btn ghost" id="s-title">${t('保存并返回标题')}</button></div>`;
@@ -256,7 +257,7 @@ export class Menu {
     bind('#s-inv', (el) => { s.invertY = el.checked; });
     bind('#s-shadow', (el) => { s.shadows = el.checked; g.applySettings(); });
     bind('#s-quality', (el) => { s.quality = el.value; g.applySettings(); });
-    bind('#s-ai', (el) => { s.aiChat = el.checked; });
+    if (AI_SUPPORTED) bind('#s-ai', (el) => { s.aiChat = el.checked; });
     const sv = $('#s-save', this.body); sv.style.pointerEvents = 'auto'; sv.onclick = () => { g.state.save(); g.hud.toast(t('已保存')); };
     const tt = $('#s-title', this.body); tt.style.pointerEvents = 'auto'; tt.onclick = () => { g.state.save(); location.reload(); };
   }
