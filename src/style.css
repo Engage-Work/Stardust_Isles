@@ -118,6 +118,7 @@ kbd { display: inline-block; min-width: 28px; padding: 2px 7px; border-radius: 8
 .title-inner { text-align: center; color: #fff; }
 .logo { font-size: 84px; font-weight: 800; letter-spacing: 14px; text-shadow: 0 6px 30px rgba(255, 200, 80, .7), 0 2px 4px rgba(0,0,0,.3); color: #fff8d6; }
 .sub { font-size: 20px; letter-spacing: 10px; opacity: .9; margin-top: 4px; }
+.edition { margin-top: 14px; font-size: 11px; letter-spacing: 5px; text-transform: uppercase; opacity: .5; }
 .loading { margin-top: 40px; font-size: 16px; opacity: .9; }
 .buttons { margin-top: 40px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
 .buttons button { pointer-events: auto; width: 220px; padding: 12px; font-size: 20px; border-radius: 999px; border: none; cursor: pointer; background: var(--panel); color: var(--ink); box-shadow: var(--shadow); transition: transform .15s; }
