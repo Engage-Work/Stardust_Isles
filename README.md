@@ -180,3 +180,5 @@ Built with [Three.js](https://threejs.org/) and [Vite](https://vitejs.dev/). The
 <p align="center">If you enjoyed your trip to the isles, a star ⭐ would be greatly appreciated!</p>
 
 <p align="center"><a href="https://star-history.com/#Danzer1xxxxChan/Stardust_Isles&Date"><img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Danzer1xxxxChan/Stardust_Isles&type=Date" width="600"></a></p>
+
+This fork is the English-first Engage Edition, maintained by Engage, hosted as a static site (the islander AI chat is off).
