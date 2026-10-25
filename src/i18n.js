@@ -12,7 +12,7 @@ function detect() {
     const s = localStorage.getItem(KEY);
     if (s && (s === 'zh' || TABLES[s])) return s;
   } catch { /* ignore */ }
-  return 'zh';
+  return 'en';
 }
 
 export const LANG = detect();
